@@ -35,6 +35,6 @@ jobs:
       run: |
         aws ecs update-service \
           --cluster hello-cluster \
-          --service hello-service \
+          --service hello-task-ecs-serv \
           --force-new-deployment
 
