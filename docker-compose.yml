@@ -1,0 +1,26 @@
+version: "3.9"  # Docker Compose 파일 버전
+
+services:
+  web:
+    image: 866874933972.dkr.ecr.ap-northeast-2.amazonaws.com/hello-ecr:latest  # ECR에 올린 이미지 주소
+    ports:
+      - "5000:5000"  # 호스트 5000 포트 → 컨테이너 5000 포트 연결
+    environment:
+      - FLASK_ENV=development
+    depends_on:
+      - db
+
+  db:
+    image: postgres:13  # 공식 Postgres 이미지 사용
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: mydb
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
+
