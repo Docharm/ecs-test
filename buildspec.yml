@@ -12,7 +12,7 @@ phases:
     commands:
       - echo Building the Docker image...
       - docker build -t $REPOSITORY_URI:$IMAGE_TAG .
-  
+
   post_build:
     commands:
       - echo Pushing the Docker image...
@@ -21,8 +21,5 @@ phases:
       - printf '[{"name":"hello-container","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
 
 artifacts:
-  files: imagedefinitions.json
-
-# retry
-# retry deploy
-# retry deploy
+  files:
+    - imagedefinitions.json
